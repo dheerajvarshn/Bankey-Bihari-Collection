@@ -3,9 +3,8 @@ const { Schema } = Mongoose;
 
 // Contact Schema
 const ContactSchema = new Schema({
-  name: {
-    type: String,
-    trim: true
+  number:{
+    type:Number
   },
   email: {
     type: String
@@ -21,5 +20,5 @@ const ContactSchema = new Schema({
   }
 });
 
-const ContactModel= Mongoose.model('Contact', ContactSchema);
-module.exports =ContactModel
+module.exports= Mongoose.model('Contact', ContactSchema);
+ 
