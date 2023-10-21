@@ -14,11 +14,12 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { useState } from "react";
-// import {gapi} from 'gapi-script'
+import {gapi} from 'gapi-script'
 import axios from "axios";
 import {useDispatch} from 'react-redux'
-// import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from 'react-google-login';
 import {  useNavigate } from "react-router-dom";
+
 import { useEffect } from "react";
 import Signup from "./Signup";
 import { ForgetPasswordModal } from "./forgetPassword/ForgetPassword";
@@ -34,41 +35,24 @@ const Login = () => {
   const toast = useToast()
   const [formErrors, setFormErrors] = useState({});
   const [data, setData] = useState(init);
-  // const clientId="154367099312-8rnd98dsftseg9hcbjna7qvemq7bjo8d.apps.googleusercontent.com"
+  const clientId="154367099312-8rnd98dsftseg9hcbjna7qvemq7bjo8d.apps.googleusercontent.com"
   const [issubmit, setIsSubmit] = useState(false);
   const navigate = useNavigate();
   const dispatch=useDispatch()
+  
   const bg=useColorModeValue('whiteAlpha.700','#1a202c')
-
-  // useEffect(() => {
-  //   const token = JSON.parse(localStorage.getItem("Token"));
-  //   console.log(token);
-  //   if(token){ 
-  //   axios
-  //     .get("http://localhost:5000/auth/protected", {
-  //       headers: {
-  //         Authorization: token,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-  //       navigate("/");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  //   }
-  //   }, [navigate]);
-
+  
+  
   const loginData = (data) => {
+
     axios
       .post("http://localhost:5000/auth/login", data)
       .then((user) => {        
         localStorage.setItem("Token", JSON.stringify(user.data.token));
-        dispatch(AuthDetail(user.data.user))
+        dispatch(AuthDetail())
         setData(init)
         toast({description:"login successfull",position:'top',status:'success',duration:'3000'});
-        navigate("/")
+        navigate('/')
       })
       .catch((err) => {
         const error = err.response.data
@@ -79,11 +63,11 @@ const Login = () => {
       )
   };
 
-  // useEffect(()=>{
-  //   gapi.load("client:auth2",()=>{
-  //     gapi.auth2.init({clientId:clientId})
-  //   })
-  // },[])
+  useEffect(()=>{
+    gapi.load("client:auth2",()=>{
+      gapi.auth2.init({clientId:clientId})
+    })
+  },[])
 
 
   const handleChange = (e) => {
@@ -129,23 +113,23 @@ const Login = () => {
     return error;
   };
 
-  // const responseSuccessGoogle = (response) => {
-  //   console.log(response);
-  //   axios.post('http://localhost:5000/auth/googlelogin',{"tokenId":response.tokenObj.id_token}).then(result=>{
-  //     console.log(result.data)
-  //     localStorage.setItem("Token", JSON.stringify(result.data.token));
-  //     dispatch(AuthDetail(result.data.user))
-  //     setData(init)
-  //     toast({description:"login successfull",position:'top',status:'success',duration:'3000'});
-  //     navigate("/")
-  //   }).catch(((err)=>{
-  //     console.log(err)
-  //   }))
-  // }
+  const responseSuccessGoogle = (response) => {
+    console.log(response);
+    axios.post('http://localhost:5000/auth/googlelogin',{"tokenId":response.tokenObj.id_token}).then(result=>{
+      console.log(result.data)
+      localStorage.setItem("Token", JSON.stringify(result.data.token));
+      // dispatch(AuthDetail(result.data.user))
+      setData(init)
+      toast({description:"login successfull",position:'top',status:'success',duration:'3000'});
+      navigate("/")
+    }).catch(((err)=>{
+      console.log(err)
+    }))
+  }
 
-  // const responseFaliureGoogle=(response)=>{
-  //   console.log(response)
-  // }
+  const responseFaliureGoogle=(response)=>{
+    console.log(response)
+  }
 
   return (
     <Flex
@@ -202,13 +186,13 @@ const Login = () => {
         <Divider/>
       </HStack>
       <HStack justifyContent='center'>
-      {/* <GoogleLogin
+      <GoogleLogin
       clientId={clientId}
     buttonText="Login with Google"
     onSuccess={responseSuccessGoogle}
     onFailure={responseFaliureGoogle}
     cookiePolicy={'single_host_origin'}
-    /> */}
+    />
       </HStack>
       <Box fontFamily="cursive" textAlign={"center"}>
         <Signup />

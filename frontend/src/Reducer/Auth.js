@@ -1,15 +1,15 @@
 /* eslint-disable no-fallthrough */
 const initstate = {
-    Auth:[]
+    Auth:{}
   }
   
 const authReducer=(state=initstate,action)=>{
     switch(action.type){
         case "ADD_AUTH":{
-            return {user:action.payload}
+            return {...state,Auth: action.payload}
         }
         case "DELETE_AUTH":{
-            return {user:null}
+            return {...state,Auth:{}}
 
         }
         default:

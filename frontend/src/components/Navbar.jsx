@@ -93,8 +93,8 @@ function Navbar() {
             Mens
           </MenuButton>
           <MenuList>
-            {menCategory.map((item) => (
-              <Link to={item.to}>
+            {menCategory.map((item,index) => (
+              <Link to={item.to} key={index}>
                 {" "}
                 <MenuItem key={item.name}>{item.name}</MenuItem>
               </Link>
@@ -108,8 +108,8 @@ function Navbar() {
             Womens
           </MenuButton>
           <MenuList>
-            {womenCategory.map((item) => (
-              <Link to={item.to}>
+            {womenCategory.map((item,index) => (
+              <Link to={item.to} key={index}>
                 {" "}
                 <MenuItem key={item.name}>{item.name}</MenuItem>
               </Link>

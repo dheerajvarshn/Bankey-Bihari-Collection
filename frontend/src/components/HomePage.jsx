@@ -1,13 +1,20 @@
 import { Box, Heading } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import Footer from './Footer'
 import Navbar from './Navbar'
 import Product from './Product'
 import Slides from './Slides'
 import SearchResult from './SearchBox/searchresult'
+import { useDispatch } from 'react-redux'
+import { AuthDetail } from '../Action/Auth'
 
 const HomePage = () => {
+  const dispatch =useDispatch()
+  useEffect(()=>{
+    dispatch(AuthDetail())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
   return (
     
     <Box>

@@ -16,6 +16,7 @@ const paymentRoute = require('./apis/Payment');
 const forgetPasswordRouter = require('./apis/ForgetPassword');
 const searchRouter = require('./apis/Search');
 const reviewRouter = require('./apis/Reviews');
+const filterRouter = require('./apis/FilterProduct')
 const ForgetPassword = require('./apis/ForgetPassword');
 
 // auth route
@@ -23,6 +24,9 @@ allroutes.use('/auth',authrouter)
 
 // searchbox route
 allroutes.use('/search',searchRouter)
+
+// filter product
+allroutes.use('/filter',filterRouter)
 
 // product route
 allroutes.use('/product',productRouter)
@@ -48,6 +52,8 @@ allroutes.use('/reviews', reviewRouter)
 
 // change password
 allroutes.use('/user',ForgetPassword )
+
+
 
 
 

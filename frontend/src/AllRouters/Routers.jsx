@@ -17,10 +17,10 @@ import OrderSummary from "../components/OrderSummary";
 import ChangePassword from "../components/forgetPassword/ChangePassword";
 import SearchProductPage from "../components/SearchBox/searchProductPage"
 import Error from "../components/Error";
-
+import { Box } from "@chakra-ui/react";
 const Routers = () => {
   return (
-    <div>
+    <Box>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
@@ -38,8 +38,10 @@ const Routers = () => {
         />
         <Route
           path="/search_product_page/:searchitem"
+          exact
           element={<SearchProductPage />}
         />
+
         <Route path="/add_to_cart" exact element={<AddToCart />} />
         <Route path="/delivary_address" exact element={<AddressForm />} />
         <Route path="/user/address/add" exact element={<DeliveryAddress />} />
@@ -55,7 +57,7 @@ const Routers = () => {
         <Route path = "*" element = {<Error />}/>
 
       </Routes>
-    </div>
+    </Box>
   );
 };
 

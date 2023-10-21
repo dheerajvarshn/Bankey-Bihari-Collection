@@ -16,8 +16,8 @@ const Slides = () => {
         interval={3000}
         height='200px'
       >
-        {slidesImages.map((image) => (
-          <Box height={500} backgroundSize='cover'>
+        {slidesImages.map((image,index) => (
+          <Box height={500} backgroundSize='cover' key={index}>
             <img src={image} alt="sorry" />
           </Box>
         ))}

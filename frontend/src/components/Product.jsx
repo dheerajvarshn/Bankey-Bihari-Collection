@@ -57,12 +57,12 @@ const Product = ({ category }) => {
       >
         {products &&
           products.map((product, index) => (
-            <Skeleton height="100%" isLoaded={isLoaded}>
+            <Skeleton height="100%" isLoaded={isLoaded} key={index}>
               {index <= 7 && (
                 <Link to={`/product/category/subcategory/${product._id}`}>
                   <Box boxShadow="2xl" textAlign={"center"} mb={5}  rounded="xl" border='1px' 
-                  //  bg="white"
-                    height="100%" w="90%" p='2' >
+                  //  bg="white" 
+                    height="100%" w="90%" p='2' key={product._id} >
                     <Box>
                       <Image
                         boxSize="150px"

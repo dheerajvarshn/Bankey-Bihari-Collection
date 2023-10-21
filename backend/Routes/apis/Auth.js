@@ -165,6 +165,7 @@ authrouter.get(
         id: req.user.id,
         username: req.user.userName,
       },
+      userDetail:req.user
     });
   }
 );

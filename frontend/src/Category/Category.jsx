@@ -5,9 +5,7 @@ import {
   Heading,
   Image,
   Icon,
-  Skeleton,
-  HStack,
-  Button,
+  Skeleton
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
@@ -18,9 +16,11 @@ import { FcRating } from "react-icons/fc";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import SearchResult from "../components/SearchBox/searchresult";
+import Pagination from "../components/Pagination";
 
 
 const Category = () => {
+  const [page, setPage] = useState("");
   const [products, setProducts] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
   const { category } = useParams();
@@ -42,6 +42,10 @@ const Category = () => {
     }, 5000);
   }, []);
 
+  const productPerPage = (p) => {
+    console.log(p);
+    setPage(p);
+  };
 
   return (
     <Box>
@@ -57,66 +61,64 @@ const Category = () => {
       >
         {category.toUpperCase()} FASHION
       </Heading>
-      <Grid
-        templateColumns="repeat(4, 1fr)"
-        gap={2}
-        mx="30px"
-        padding={5}
-        textAlign="center"
-        gridRowGap="20px"
-        // bg="gray.50"
-      >
-        {products &&
-          products.map((product) => (
-            <Skeleton height="100%" isLoaded={isLoaded}>
-              <Link to={`/product/category/subcategory/${product._id}`}>
-                <GridItem
-                  textAlign={"center"}
-                  key={product._id}
-                  mb={2}
-                  border="1px"
-                  borderStyle="revert"
-                  boxShadow="2xl"
-                  p="6"
-                  rounded="xl"
-                  height="100%"
-                  // bg="white"
-                  w="90%"
-                >
-                  <Box>
-                    <Image
-                      boxSize="200px"
-                      src={product.image}
-                      alt="Dan Abramov"
-                      m="auto"
-                      mb={5}
-                    />
-                    <Heading fontSize={"20px"}>{`${product.name.substr(
-                      0,
-                      30
-                    )}`}</Heading>
-                    <Box>
-                      <Icon as={BiRupee} boxSize={3} />
-                      {product.price}.<span>00</span>
+      {products && (
+        <>
+          <Grid
+            templateColumns="repeat(4, 1fr)"
+            gap={2}
+            mx="30px"
+            padding={5}
+            justifyContent="center"
+            gridRowGap="20px"
+          >
+            {products.slice(page * 8 - 8, page * 8).map((product, index) => (
+              <Skeleton height="100%" isLoaded={isLoaded}>
+                <Link to={`/product/category/subcategory/${product._id}`}>
+                  <GridItem
+                   _hover={{backgroundColor:'red.100'}}
+                    textAlign={"center"}
+                    mb={2}
+                    border="1px"
+                    boxShadow="xl"
+                    p="6"
+                    rounded="xl"
+                    height="90%"
+                    // bg="white"
+                    w="80%"
+                  >
+                    <Box key={product._id}>
+                      <Image
+                        boxSize=" 150px "
+                        src={product.image}
+                        alt="Dan Abramov"
+                        m="auto"
+                        
+                        mb="5"
+                      />
+                      <Heading fontSize={"20px"}>{`${product.name.substr(
+                        0,
+                        30
+                      )}`}</Heading>
+                      <Box>
+                        <Icon as={BiRupee} boxSize={3} />
+                        {product.price}.<span>00</span>
+                      </Box>
+                      <Box>
+                        {" "}
+                        <Icon as={FcRating} boxSize={4} />
+                        {product.rating}
+                      </Box>
                     </Box>
-                    <Box>
-                      {" "}
-                      <Icon as={FcRating} boxSize={4} ml="-5" />{" "}
-                      {product.rating}
-                    </Box>
-                  </Box>
-                </GridItem>
-              </Link>
-            </Skeleton>
-          ))}
-      </Grid>
-      <Box>
-        <HStack justify={'center'} mb={'5'}>
-                  <Button> {'<'}Prev</Button>
-
-                  <Button>Next {'>'}</Button>
-        </HStack>
-      </Box>
+                  </GridItem>
+                </Link>
+              </Skeleton>
+            ))}
+          </Grid>
+          <Box>
+            <Pagination products={products} productPerPage={productPerPage} />
+          </Box>
+        </>
+      )}
       <Footer />
     </Box>
   );

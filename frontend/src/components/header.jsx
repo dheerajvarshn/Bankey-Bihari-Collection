@@ -21,13 +21,17 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { DeleteAuth } from "../Action/Auth";
 import { clearCart } from "../Action";
+import Profile from "./Profile";
 
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const token = JSON.parse(localStorage.getItem("Token"));
-  const auth = useSelector((state) => state.authReducer.user);
+  const auth = useSelector((state) => state.authReducer.Auth);
+  console.log(auth)
 
-  const getData = useSelector((state) => state.cartReducer.cart);
+  
+
+  const getData = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch();
   const [Token, setToken] = useState(false);
   const toast = useToast();
@@ -45,6 +49,8 @@ const Header = () => {
     localStorage.removeItem("Token");
     setToken(false);
   };
+
+
   return (
     <Flex
       h="70px"
@@ -124,23 +130,9 @@ const Header = () => {
             </Box>
           </Box>
         </Link>
-        {auth ? (
-          <Box>
-            <Text
-              mr="5"
-              bgColor="green.100"
-              width="30px"
-              h={8}
-              mt="2"
-              pt={1}
-              borderRadius="100%"
-              textAlign="center"
-              fontFamily="sans-serif"
-              cursor="pointer"
-            >
-              {auth.userName.slice(0, 1)}
-            </Text>
-          </Box>
+        {Object.keys(auth).length!==0 ? (
+ 
+            <Profile/>
         ) : (
           <Box
             onClick={() =>
@@ -160,6 +152,7 @@ const Header = () => {
               src="https://bit.ly/sage-adebayo"
               mr={5}
             />
+            
           </Box>
         )}
       </Box>

@@ -5,13 +5,18 @@ const { Schema } = Mongoose;
 const ReviewSchema = new Schema({
   productId: {
     type: Schema.Types.ObjectId,
-    ref:'Product'
+    ref:'Product',
+    require:true
   },
   userId : {
     type: Schema.Types.ObjectId,
     ref:'User'
   },
-  title: {
+  userName:{
+    type:String,
+    require:true
+  },
+  reviewText: {
     type: String ,
     require : true
   },
@@ -19,16 +24,8 @@ const ReviewSchema = new Schema({
     type:Number,
     default:0 ,
     require : true
-  },
-  reviews:{
-    type : Number ,
-    default : 0 ,
-    require : true
-  },
-  desc : {
-    type : String 
   }
-}, 
+},
 {
   timestamps : true
 });

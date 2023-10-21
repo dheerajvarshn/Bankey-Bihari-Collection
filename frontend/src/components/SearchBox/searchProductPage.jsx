@@ -1,110 +1,60 @@
-import { Box, Button, Grid, GridItem, HStack, Heading, Icon, Image, Skeleton } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import Navbar from '../Navbar'
-import SearchResult from './searchresult'
-import { Link } from 'react-router-dom'
-import { BiRupee } from 'react-icons/bi'
-import { FcRating } from 'react-icons/fc'
-import Footer from '../Footer'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Box } from "@chakra-ui/react";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Navbar from "../Navbar";
+import SearchResult from "./searchresult";
+import Footer from "../Footer";
+import CommonProductPage from "../CommonProduct";
+import { useParams } from "react-router-dom";
+import { searchProducts } from "../../Action/searchProduct";
 
 function SearchProductPage() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [products,setProducts]=useState([])
-  const  {searchResult} = useSelector(state=>state.searchReducer)
-  console.log(searchResult)
-
-  useEffect(() =>{
-    if(searchResult.length==="") {
-      return ;
-    }else if(searchResult[0]){
-      setProducts(searchResult[0])
-    }
-
-  },[searchResult])
+  const { searchitem } = useParams();
+  const dispatch = useDispatch();
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [products, setProducts] = useState([]);
+  const { searchResult } = useSelector((state) => state.searchReducer);
+  const { filterResult } = useSelector((state) => state.filterReducer);
+  const searchTimeOutRef = useRef();
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoaded(true);
-    }, 3000);
-  }, []);
+    dispatch(searchProducts(searchitem));
+  }, [searchitem]);
+
+  useEffect(() => {
+    if (searchResult.length === "") {
+      return products;
+    } else if (searchResult[0]) {
+      setProducts(searchResult[0]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchResult]);
+
+  useEffect(() => {
+    // clear existing timeout
+    clearTimeout(searchTimeOutRef.current);
+
+    setIsLoaded(false);
+    try {
+      searchTimeOutRef.current = setTimeout(() => {
+        setIsLoaded(true);
+        setProducts(filterResult);
+      }, 2000);
+    } catch (error) {
+      console.log({ error: error });
+    }
+  }, [filterResult]);
+
   return (
     <Box>
       <Navbar />
-      <SearchResult/>
-      <Heading
-        fontSize={30}
-        // bg="gainsboro"
-        width="30%"
-        fontStyle="italic"
-        ml={12}
-        pl={5}
-      >
-        TOP TREANDING PRODUCTS
-      </Heading>
-      <Grid
-        templateColumns="repeat(4, 1fr)"
-        gap={2}
-        mx="30px"
-        padding={5}
-        textAlign="center"
-        gridRowGap="20px"
-        // bg="gray.50"
-      >
-        {products &&
-          products.map((product) => (
-            <Skeleton height="100%" isLoaded={isLoaded}>
-              <Link to={`/product/category/subcategory/${product._id}`}>
-                <GridItem
-                  textAlign={"center"}
-                  key={product._id}
-                  mb={2}
-                  border="1px"
-                  borderStyle="revert"
-                  boxShadow="2xl"
-                  p="6"
-                  rounded="xl"
-                  height="100%"
-                  // bg="white"
-                  w="90%"
-                >
-                  <Box>
-                    <Image
-                      boxSize="200px"
-                      src={product.image}
-                      alt="Dan Abramov"
-                      m="auto"
-                      mb={5}
-                    />
-                    <Heading fontSize={"20px"}>{`${product.name.substr(
-                      0,
-                      30
-                    )}`}</Heading>
-                    <Box>
-                      <Icon as={BiRupee} boxSize={3} />
-                      {product.price}.<span>00</span>
-                    </Box>
-                    <Box>
-                      {" "}
-                      <Icon as={FcRating} boxSize={4} ml="-5" />{" "}
-                      {product.rating}
-                    </Box>
-                  </Box>
-                </GridItem>
-              </Link>
-            </Skeleton>
-          ))}
-      </Grid>
-      <Box>
-        <HStack justify={'center'} mb={'5'}>
-                  <Button> {'<'}Prev</Button>
+      <SearchResult />
+      <CommonProductPage products={products} isLoaded={isLoaded} />
 
-                  <Button>Next {'>'}</Button>
-        </HStack>
-      </Box>
       <Footer />
     </Box>
-  )
+  );
 }
 
-export default SearchProductPage
+export default SearchProductPage;
