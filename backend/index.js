@@ -4,6 +4,7 @@ const {connection}=require('./db');
 const allroutes= require('./Routes/index');
 const cors=require('cors');
 const mailSender = require('./utils/mailSender');
+const path = require('path')
 
 
 const app=express();
@@ -14,6 +15,14 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
 app.use('/',allroutes)
+
+
+// static files
+app.use(express.static(path.join(__dirname,'../frontend/build')))
+
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'../frontend/build/index.html'))
+})
 
 app.listen(PORT||5000,async()=>{
     try{
