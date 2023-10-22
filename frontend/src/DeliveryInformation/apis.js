@@ -6,6 +6,7 @@ import logo from "../images/1.png";
 
 
 
+
 // payment method
 export let handlePayment = (total,naviagte,dispatch) => {
   const _data={
@@ -30,7 +31,7 @@ export let handlePayment = (total,naviagte,dispatch) => {
 export let  handleOpenRazorpay = (data,naviagte,dispatch) => {
   
     let option = {
-      key: "rzp_test_67c3VOXCJvMgTo",
+      key: process.env.RAZORPAY_KEY,
       amount: Number(data.amount),
       currrency: data.currrency,
       name: "Bankey Bihari Collection",
