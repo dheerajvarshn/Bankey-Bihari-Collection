@@ -4,7 +4,7 @@ const {connection}=require('./db');
 const allroutes= require('./Routes/index');
 const cors=require('cors');
 const mailSender = require('./utils/mailSender');
-
+const path = require('path')
 
 const app=express();
 
@@ -15,6 +15,12 @@ app.use(express.json())
 
 app.use('/',allroutes)
 const PORT = process.env.PORT
+ 
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.listen(PORT||5000,async()=>{
     try{
