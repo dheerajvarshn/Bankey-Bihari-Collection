@@ -1,5 +1,5 @@
 const express=require('express');
-const { PORT } = require('./config/key');
+// const { PORT } = require('./config/key');
 const {connection}=require('./db');
 const allroutes= require('./Routes/index');
 const cors=require('cors');
@@ -14,6 +14,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
 app.use('/',allroutes)
+const PORT = process.env.PORT
 
 app.listen(PORT||5000,async()=>{
     try{
