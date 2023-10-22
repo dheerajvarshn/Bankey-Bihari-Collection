@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/Bankey-Bihari-Collection/static/css/main.9bc95a3d.css",
+    "main.js": "/Bankey-Bihari-Collection/static/js/main.09a488ea.js",
+    "static/js/787.cda612ba.chunk.js": "/Bankey-Bihari-Collection/static/js/787.cda612ba.chunk.js",
+    "static/media/error.png": "/Bankey-Bihari-Collection/static/media/error.fbe65054bf37f4a8292c.png",
+    "static/media/1.png": "/Bankey-Bihari-Collection/static/media/1.a0a72f91a774d8df1f63.png",
+    "static/media/emptycart.png": "/Bankey-Bihari-Collection/static/media/emptycart.136ba5539bbea023ee9f.png",
+    "static/media/resultNotFound.png": "/Bankey-Bihari-Collection/static/media/resultNotFound.941e567c485fbd7c6c31.png",
+    "index.html": "/Bankey-Bihari-Collection/index.html",
+    "main.9bc95a3d.css.map": "/Bankey-Bihari-Collection/static/css/main.9bc95a3d.css.map",
+    "main.09a488ea.js.map": "/Bankey-Bihari-Collection/static/js/main.09a488ea.js.map",
+    "787.cda612ba.chunk.js.map": "/Bankey-Bihari-Collection/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9bc95a3d.css",
+    "static/js/main.09a488ea.js"
+  ]
+}

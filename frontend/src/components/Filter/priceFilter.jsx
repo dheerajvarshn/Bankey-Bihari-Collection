@@ -7,7 +7,6 @@ import {
   RangeSliderTrack,
   Select,
 } from "@chakra-ui/react";
-import { useRangeSlider } from '@chakra-ui/react'
 import React, { useEffect, useState } from "react";
 
 const PriceFilter = ({ price }) => {
