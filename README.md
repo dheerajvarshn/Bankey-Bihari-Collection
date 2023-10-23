@@ -1,1 +1,0 @@
-# Bankey-Bihari-Collection

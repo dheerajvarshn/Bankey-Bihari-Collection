@@ -9,6 +9,7 @@ function Reviews({ product }) {
   const auth = useSelector((state) => state.authReducer.Auth);
   const [allReviews, setAllReviews] = useState(false);
   const [reviews, setReviews] = useState({});
+  const [add,setAdd]=useState(false)
   const [showReviews, setShowReviews] = useState([]);
 
   console.log(product);
@@ -24,12 +25,16 @@ function Reviews({ product }) {
  try{
   if(Object.keys(auth).length!==0){
     setReviews({ ...reviews, userId: auth._id });
+    setAdd(true)
+  }else{
+    setAdd(false)
+    console.log('you are not login')
   }
  }catch(err){
     console.log({'Error':err})
  }
  // eslint-disable-next-line react-hooks/exhaustive-deps
- },[])
+ },[add])
 
 
 
@@ -38,6 +43,7 @@ function Reviews({ product }) {
     axios
       .get(`http://localhost:5000/reviews/product/${product._id}`)
       .then((result) => {
+        console.log(result.data)
         setShowReviews(result.data.data);
       })
       .catch((error) => {
@@ -93,7 +99,7 @@ function Reviews({ product }) {
         <Heading size={"md"}>Product Ratings & Review</Heading>
         <Spacer />
         <Box>
-          <ReviewModal reviewFunction={reviewFunction} />
+          <ReviewModal reviewFunction={reviewFunction} show={add} />
         </Box>
       </Flex>
       {showReviews.length !== 0 && (

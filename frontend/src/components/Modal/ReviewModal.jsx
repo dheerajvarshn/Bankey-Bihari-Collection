@@ -1,5 +1,4 @@
 import {
-
   Box,
   Button,
   Heading,
@@ -16,39 +15,58 @@ import {
   Stack,
   Text,
   useDisclosure,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
-import {  useState } from "react";
+import { useState } from "react";
 
+const ReviewModal = ({ reviewFunction, show }) => {
+  const [review, setReview] = useState("");
+  const [rating, setRating] = useState(5);
+  const toast = useToast();
 
-const ReviewModal = ({reviewFunction}) => {
-  const [review,setReview]=useState("")
-  const [rating,setRating]=useState(5)
-  const toast = useToast ()
- 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleClick = () => {
-    if(rating && review) {
-      const data= {rating,review}
-      reviewFunction(data)
-       onClose()
-       toast({
-        description:"Review Add successfull",
-        status:"success",
+    if (rating && review) {
+      const data = { rating, review };
+      reviewFunction(data);
+      onClose();
+      toast({
+        description: "Review Add successfull",
+        status: "success",
         position: "top",
-      }); 
-      
+      });
     }
   };
-
-
+  const notLogin=()=>{
+    toast({
+      description: "You are not login",
+      status: "success",
+      position: "top",
+    })
+  }
+  
 
   return (
     <>
       <Box>
-        <Button colorScheme="red" variant="outline" onClick={onOpen}>
-          Add Reviews
-        </Button>
+        {show ? (
+          <Button
+            colorScheme="red"
+            variant="outline"
+            onClick={onOpen}
+          >
+            Add Reviews
+          </Button>
+        ) : (
+          <Button
+          
+            colorScheme="red"
+            variant="outline"
+            onClick={notLogin}
+          >
+            Add Reviews
+          </Button>
+        )}
       </Box>
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
@@ -59,12 +77,15 @@ const ReviewModal = ({reviewFunction}) => {
           <ModalCloseButton />
           <ModalBody>
             <>
-              
-
-               <Text>Review : </Text>
-              <Input type="text" placeholder="Give your feedback" mb="5" onChange={(e)=>setReview(e.target.value)}/>
+              <Text>Review : </Text>
+              <Input
+                type="text"
+                placeholder="Give your feedback"
+                mb="5"
+                onChange={(e) => setReview(e.target.value)}
+              />
               <Text mt={3}>Rating : </Text>
-              <RadioGroup defaultValue='5'  value={rating} onChange={setRating}>
+              <RadioGroup defaultValue="5" value={rating} onChange={setRating}>
                 <Stack spacing={5} direction="row">
                   <Radio colorScheme="red" value="1">
                     1
@@ -89,9 +110,9 @@ const ReviewModal = ({reviewFunction}) => {
                 m="auto"
                 my={5}
                 onClick={handleClick}
-              >Add</Button>
-
-
+              >
+                Add
+              </Button>
             </>
           </ModalBody>
           <ModalFooter>

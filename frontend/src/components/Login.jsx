@@ -52,7 +52,7 @@ const Login = () => {
         dispatch(AuthDetail())
         setData(init)
         toast({description:"login successfull",position:'top',status:'success',duration:'3000'});
-        navigate('/')
+        navigate(-1)
       })
       .catch((err) => {
         const error = err.response.data
@@ -121,7 +121,7 @@ const Login = () => {
       // dispatch(AuthDetail(result.data.user))
       setData(init)
       toast({description:"login successfull",position:'top',status:'success',duration:'3000'});
-      navigate("/")
+      navigate(-1)
     }).catch(((err)=>{
       console.log(err)
     }))
