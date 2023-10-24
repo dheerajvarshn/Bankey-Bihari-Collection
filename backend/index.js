@@ -16,10 +16,10 @@ app.use(express.json())
 app.use('/',allroutes)
 const PORT = process.env.PORT
  
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join('frontend/build')));
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+app.get('*', function (req, res) {
+  res.sendFile(path.resolve(__dirname,'frontend','build','index.html'));
 });
 
 app.listen(PORT||5000,async()=>{
