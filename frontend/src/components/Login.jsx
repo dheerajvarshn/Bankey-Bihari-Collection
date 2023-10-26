@@ -46,7 +46,7 @@ const Login = () => {
   const loginData = (data) => {
 
     axios
-      .post("http://localhost:5000/auth/login", data)
+      .post("https://mern-zvtq.onrender.com/auth/login", data)
       .then((user) => {        
         localStorage.setItem("Token", JSON.stringify(user.data.token));
         dispatch(AuthDetail())
@@ -115,7 +115,7 @@ const Login = () => {
 
   const responseSuccessGoogle = (response) => {
     console.log(response);
-    axios.post('http://localhost:5000/auth/googlelogin',{"tokenId":response.tokenObj.id_token}).then(result=>{
+    axios.post('https://mern-zvtq.onrender.com/auth/googlelogin',{"tokenId":response.tokenObj.id_token}).then(result=>{
       console.log(result.data)
       localStorage.setItem("Token", JSON.stringify(result.data.token));
       // dispatch(AuthDetail(result.data.user))

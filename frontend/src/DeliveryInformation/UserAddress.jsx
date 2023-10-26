@@ -4,7 +4,7 @@ export function getAllAddress() {
   const token = JSON.parse(localStorage.getItem("Token"));
   if (token) {
     return axios
-      .get("http://localhost:5000/user/address", {
+      .get("https://mern-zvtq.onrender.com/user/address", {
         headers: {
           Authorization: token,
         },

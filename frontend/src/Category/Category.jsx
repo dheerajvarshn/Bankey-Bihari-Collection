@@ -27,7 +27,7 @@ const Category = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/product/category/${category}`)
+      .get(`https://mern-zvtq.onrender.com/product/category/${category}`)
       .then((result) => {
         setProducts(result.data);
       })

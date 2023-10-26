@@ -44,7 +44,7 @@ import {
     };
     const handleSubmit = (event) => {
       event.preventDefault();
-      axios.post('http://localhost:5000/product/add',product).then((result)=>{
+      axios.post('https://mern-zvtq.onrender.com/product/add',product).then((result)=>{
           console.log(result.data)
       }).catch((err)=>{
           console.log(err)

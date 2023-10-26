@@ -45,7 +45,7 @@ const AddToCart = () => {
         cartItems: cartProduct
       }
       axios
-    .post("http://localhost:5000/user/cart/addtocart", body, {
+    .post("https://mern-zvtq.onrender.com/user/cart/addtocart", body, {
         headers: {
           Authorization: token,
         },

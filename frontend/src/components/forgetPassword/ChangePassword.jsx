@@ -33,7 +33,7 @@ const ChangePassword = () => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/user/forget-password", { id: id })
+      .post("https://mern-zvtq.onrender.com/user/forget-password", { id: id })
       .then((res) => {
         console.log(res.data);
       })
@@ -99,7 +99,7 @@ const ChangePassword = () => {
         password: data.password,
       };
       axios
-        .post("http://localhost:5000/user/reset-password", body)
+        .post("https://mern-zvtq.onrender.com/user/reset-password", body)
         .then((result) => {
           // const res = result.data;
           if (result) {

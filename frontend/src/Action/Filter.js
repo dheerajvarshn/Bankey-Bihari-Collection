@@ -19,7 +19,7 @@ export const filterProduct = (filter) => {
 
     if(Object.keys(query).length !== 0){
       axios
-      .get("http://localhost:5000/filter/product", { params: query })
+      .get("https://mern-zvtq.onrender.com/filter/product", { params: query })
       .then((res) => {
         console.log(res.data)
         const result = res.data

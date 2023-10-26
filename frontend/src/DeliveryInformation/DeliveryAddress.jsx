@@ -77,7 +77,7 @@ const DeliveryAddress = () => {
 
         if (id) {
           axios
-            .put(`http://localhost:5000/user/address/${id}`, input, {
+            .put(`https://mern-zvtq.onrender.com/user/address/${id}`, input, {
               headers: {
                 Authorization: token,
               },
@@ -95,7 +95,7 @@ const DeliveryAddress = () => {
         } else {
           // add address
           axios
-            .post("http://localhost:5000/user/address/add", input, {
+            .post("https://mern-zvtq.onrender.com/user/address/add", input, {
               headers: {
                 Authorization: token,
               },
@@ -120,7 +120,7 @@ const DeliveryAddress = () => {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:5000/user/address/${id}`, {
+        .get(`https://mern-zvtq.onrender.com/user/address/${id}`, {
           headers: {
             Authorization: token,
           },

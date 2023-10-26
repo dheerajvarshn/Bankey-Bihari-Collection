@@ -41,7 +41,7 @@ function Reviews({ product }) {
   // get Reviews
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/reviews/product/${product._id}`)
+      .get(`https://mern-zvtq.onrender.com/reviews/product/${product._id}`)
       .then((result) => {
         console.log(result.data)
         setShowReviews(result.data.data);
@@ -68,7 +68,7 @@ function Reviews({ product }) {
       reviews.reviewText
     ) {
       axios
-        .post("http://localhost:5000/reviews/product/add", reviews)
+        .post("https://mern-zvtq.onrender.com/reviews/product/add", reviews)
         .then((result) => {
           console.log(result.data);
         })

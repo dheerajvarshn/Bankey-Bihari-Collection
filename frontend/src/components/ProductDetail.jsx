@@ -47,7 +47,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const getData = () => {
       axios
-        .post(`http://localhost:5000/product/category/subcategory/${_id}`)
+        .post(`https://mern-zvtq.onrender.com/product/category/subcategory/${_id}`)
         .then((result) => {
           console.log(data);
           setData(result.data);

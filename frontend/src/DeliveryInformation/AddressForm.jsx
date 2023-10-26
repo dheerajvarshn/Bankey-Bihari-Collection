@@ -28,7 +28,7 @@ const AddressForm = () => {
 
     if (token) {
       axios
-        .get("http://localhost:5000/user/address", {
+        .get("https://mern-zvtq.onrender.com/user/address", {
           headers: {
             Authorization: token,
           },
@@ -51,7 +51,7 @@ const AddressForm = () => {
   }
 
   const removeAddress=(id)=>{
-    axios.delete(`http://localhost:5000/user/address/delete/${id}`,{
+    axios.delete(`https://mern-zvtq.onrender.com/user/address/delete/${id}`,{
         headers:{
             "Authorization":token
         }

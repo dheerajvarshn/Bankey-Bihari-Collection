@@ -37,7 +37,7 @@ const SubCategory = () => {
 
   const getProduct = () => {
     axios
-      .get(`http://localhost:5000/product/category/${category}/${subcategory}`)
+      .get(`https://mern-zvtq.onrender.com/product/category/${category}/${subcategory}`)
       .then((result) => {
         setProducts(result.data);
       })

@@ -48,7 +48,7 @@ function Signup() {
   const finalRef = React.useRef(null);
 
   const googleAuth = () => {
-    window.open("http://localhost:5000/auth/google/callback", "_self");
+    window.open("https://mern-zvtq.onrender.com/auth/google/callback", "_self");
   };
 
   const handleChange = (e) => {
@@ -68,7 +68,7 @@ function Signup() {
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && issubmit) {
       axios
-        .post("http://localhost:5000/auth/signup", profile)
+        .post("https://mern-zvtq.onrender.com/auth/signup", profile)
         .then((user) => {
           console.log(user.data)
           localStorage.setItem("Token", JSON.stringify(user.data.token));

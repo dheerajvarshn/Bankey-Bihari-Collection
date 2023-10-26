@@ -13,7 +13,7 @@ export let handlePayment = (total,naviagte,dispatch) => {
     amount:total
   }
   axios
-    .post("http://localhost:5000/payment/order",_data)
+    .post("https://mern-zvtq.onrender.com/payment/order",_data)
     .then((result) => {
       console.log(result.data, "14");
       handleOpenRazorpay(result.data.data,naviagte,dispatch);
@@ -46,7 +46,7 @@ export let  handleOpenRazorpay = (data,naviagte,dispatch) => {
       image: logo,
       handler: function (response) {
         console.log(response, "42");
-        axios.post('http://localhost:5000/payment/verify',{response:response}).then((res)=>{
+        axios.post('https://mern-zvtq.onrender.com/payment/verify',{response:response}).then((res)=>{
           console.log(res.data)
           dispatch(clearCart())
           naviagte('/')          

@@ -11,7 +11,7 @@ const Protected = () => {
     console.log(token)
 
     axios
-      .get("http://localhost:5000/auth/protected", {
+      .get("https://mern-zvtq.onrender.com/auth/protected", {
         headers: {
           Authorization: token,
         },

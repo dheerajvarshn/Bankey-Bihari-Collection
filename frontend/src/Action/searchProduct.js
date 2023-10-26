@@ -10,7 +10,7 @@ export const searchProducts = (searchTerm) => {
     });
 
       axios.get(
-        `http://localhost:5000/search/product/?q=${searchTerm}`
+        `https://mern-zvtq.onrender.com/search/product/?q=${searchTerm}`
       ).then((res)=>{
         const searchResults = res.data
         dispatch({

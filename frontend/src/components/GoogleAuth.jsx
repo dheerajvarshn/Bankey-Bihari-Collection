@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 const GoogleAuth = () => {
 
     useEffect(()=>{
-        axios.get('http://localhost:5000/auth/google').then((res)=>{
+        axios.get('https://mern-zvtq.onrender.com/auth/google').then((res)=>{
             console.log(res)
         }).catch((error)=>{
             console.log(error)

@@ -56,7 +56,7 @@ export function ForgetPasswordModal() {
       setEmailVerify(true);
       setTimeout(() => {
         axios
-          .post("http://localhost:5000/user/forget-password", data)
+          .post("https://mern-zvtq.onrender.com/user/forget-password", data)
           .then((result) => {
             setEmailVerify(false);
             console.log(result.data)

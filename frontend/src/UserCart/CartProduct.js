@@ -11,7 +11,7 @@ const CartProduct = () => {
   useEffect(()=>{
     if(token){
     axios
-    .get("http://localhost:5000/user/cart/addtocart",{
+    .get("https://mern-zvtq.onrender.com/user/cart/addtocart",{
         headers: {
           "Authorization": token
         }
