@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Divider, Flex, Heading, Spacer } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Heading, Spacer, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { AiFillStar } from "react-icons/ai";
 import ReviewModal from "./Modal/ReviewModal";
 import { useSelector } from "react-redux";
 
 function Reviews({ product }) {
+  const toast = useToast()
   const auth = useSelector((state) => state.authReducer.Auth);
   const [allReviews, setAllReviews] = useState(false);
   const [reviews, setReviews] = useState({});
   const [add,setAdd]=useState(false)
   const [showReviews, setShowReviews] = useState([]);
-
-  console.log(product);
   useEffect(() => {
     if (product) {
       setReviews({ ...reviews, productId: product._id });
@@ -23,12 +22,12 @@ function Reviews({ product }) {
 
   useEffect(() =>{
  try{
+  console.log(auth)
   if(Object.keys(auth).length!==0){
     setReviews({ ...reviews, userId: auth._id });
     setAdd(true)
   }else{
     setAdd(false)
-    console.log('you are not login')
   }
  }catch(err){
     console.log({'Error':err})
@@ -40,10 +39,11 @@ function Reviews({ product }) {
 
   // get Reviews
   useEffect(() => {
+    console.log(product._id)
     axios
       .get(`https://mern-zvtq.onrender.com/reviews/product/${product._id}`)
       .then((result) => {
-        console.log(result.data)
+        console.log(result)
         setShowReviews(result.data.data);
       })
       .catch((error) => {
@@ -53,14 +53,11 @@ function Reviews({ product }) {
   }, []);
 
   const reviewFunction = (data) => {
-    console.log(data);
     setReviews({ ...reviews, reviewText: data.review, rating: data.rating });
-    console.log(reviews);
   };
 
   // add Reviews
   useEffect(() => {
-    // setReviews({...reviews,productId:product._id})
     if (
       reviews.userId &&
       reviews.productId &&
@@ -70,21 +67,19 @@ function Reviews({ product }) {
       axios
         .post("https://mern-zvtq.onrender.com/reviews/product/add", reviews)
         .then((result) => {
-          console.log(result.data);
+          toast({description:"review add",position:'top',status:'success',duration:'3000'})
         })
         .catch((error) => {
           console.log({ error: error });
         });
     }
-  }, [reviews]);
-  console.log(showReviews);
+  }, [reviews, toast]);
 
   // showa all reviews
   const showBrand = () => {
     setAllReviews(!allReviews);
     window.scrollTo(50, 50);
   };
-  console.log(showReviews)
   const visibleItem = allReviews ? showReviews : showReviews.slice(0, 3);
 
   return (

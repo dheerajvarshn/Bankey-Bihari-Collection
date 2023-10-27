@@ -75,7 +75,7 @@ function Signup() {
           dispatch(AuthDetail(user.data.user))
           toast({description:"Signup Successfully",position:'top',status:'success',duration:'3000'});
           setProfile(init);
-          navigate("/")
+          navigate(-1)
         })
         .catch((err) => {
           toast({description:"account alredy exit",position:'top',status:'warning'})
