@@ -1,11 +1,11 @@
 import {
   Box,
-  Grid,
   GridItem,
   Heading,
   Image,
   Icon,
   Skeleton,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
@@ -54,26 +54,20 @@ const SubCategory = () => {
     <Box>
       <Navbar />
       <SearchResult />
-      <Heading
+      <Box
         fontSize={30}
-        // bg="gainsboro"
-        width="30%"
+        bg="gainsboro"
         mb={5}
+        p={1}
         fontStyle="sarif"
-        ml={10}
+        ml={5}
+        
       >
         {category.toUpperCase()} FASHION
-      </Heading>
+      </Box>
       {products && (
         <>
-          <Grid
-            templateColumns="repeat(4, 1fr)"
-            gap={2}
-            mx="30px"
-            padding={5}
-            justifyContent="center"
-            gridRowGap="20px"
-          >
+          <SimpleGrid spacing={'5px'} minChildWidth='200px' p={2} ml={5} >
             {products.slice(page * 8 - 8, page * 8).map((product, index) => (
               <Skeleton height="100%" isLoaded={isLoaded}>
                 <Link to={`/product/category/subcategory/${product._id}`}>
@@ -81,7 +75,7 @@ const SubCategory = () => {
                    _hover={{backgroundColor:'red.100'}}
                     textAlign={"center"}
                     mb={2}
-                    border="1px"
+        
                     boxShadow="xl"
                     p="6"
                     rounded="xl"
@@ -97,7 +91,7 @@ const SubCategory = () => {
                         m="auto"
                         // pb={3}
                         mb="5"
-                        border={'1px'}
+                       
                         objectFit={'fill'}
                       />
                       <Heading fontSize={"20px"}>{`${product.name.substr(
@@ -118,7 +112,7 @@ const SubCategory = () => {
                 </Link>
               </Skeleton>
             ))}
-          </Grid>
+          </SimpleGrid>
           <Box>
             <Pagination products={products} productPerPage={productPerPage} />
           </Box>

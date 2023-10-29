@@ -19,7 +19,7 @@ import logo from "../images/1.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
-import { DeleteAuth } from "../Action/Auth";
+import { AuthDetail, DeleteAuth } from "../Action/Auth";
 import { clearCart } from "../Action";
 import Profile from "./Profile";
 
@@ -36,6 +36,11 @@ const Header = () => {
   const [Token, setToken] = useState(false);
   const toast = useToast();
 
+  useEffect(()=>{
+    dispatch(AuthDetail())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
+  
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (token) {
@@ -64,7 +69,7 @@ const Header = () => {
         <Image
           borderRadius="full"
           ml={10}
-          boxSize="50px"
+          boxSize={['25px','50px']}
           src={logo}
           alt="soory"
         />
@@ -73,7 +78,7 @@ const Header = () => {
         p={2}
         color="red.200"
         bgClip="text"
-        fontSize="40px"
+        fontSize={['sm', "md", "40px"]}
         fontWeight="extrabold"
         letterSpacing="2px"
         fontFamily={"sans"}

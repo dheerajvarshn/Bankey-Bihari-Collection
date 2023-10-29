@@ -1,4 +1,4 @@
-import { Box, HStack, Stack, Text, VStack } from "@chakra-ui/react";
+import { Box, HStack, SimpleGrid, Stack, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -10,15 +10,14 @@ import {
 const Footer = () => {
   return (
     <>
-      <HStack
-        justifyContent={"center"}
-        w="100%"
+      <SimpleGrid
+    
         bg={"black"}
         color="whiteAlpha.600"
-        p={10}
-        spacing="20%"
+        p={[10,20]}
+        columns={3} spacingX='40px' spacingY='20px'
       >
-        <VStack h="200px">
+        <VStack >
           <Text color="white" mb="10px" fontStyle="bold">
             LINKS
           </Text>
@@ -29,7 +28,7 @@ const Footer = () => {
           <Link to="/product/category/kids">Kids</Link>
         </VStack>
         <Box>
-          <Stack h="200px">
+          <Stack >
             <Text mb="10px" color="white">
               CONTACT
             </Text>
@@ -42,7 +41,7 @@ const Footer = () => {
           </Stack>
         </Box>
         <Box>
-          <VStack h="200px" gap={2}>
+          <VStack  gap={2}>
             <Text color="white" mb="10px">
               Social
             </Text>
@@ -66,7 +65,7 @@ const Footer = () => {
             </Link>
           </VStack>
         </Box>
-      </HStack>
+      </SimpleGrid>
       <HStack justifyContent="center" bgColor="black" color="white">
         <Text fontFamily="cursive" pb="5">
           made by Dheeraj Varshney

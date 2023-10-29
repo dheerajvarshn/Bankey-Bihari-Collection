@@ -3,15 +3,18 @@ import { Box, Button, Divider, Flex, Heading, Spacer, useToast } from "@chakra-u
 import axios from "axios";
 import { AiFillStar } from "react-icons/ai";
 import ReviewModal from "./Modal/ReviewModal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AuthDetail } from "../Action/Auth";
 
 function Reviews({ product }) {
   const toast = useToast()
+  const dispatch = useDispatch()
   const auth = useSelector((state) => state.authReducer.Auth);
   const [allReviews, setAllReviews] = useState(false);
   const [reviews, setReviews] = useState({});
   const [add,setAdd]=useState(false)
   const [showReviews, setShowReviews] = useState([]);
+
   useEffect(() => {
     if (product) {
       setReviews({ ...reviews, productId: product._id });
@@ -19,6 +22,11 @@ function Reviews({ product }) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product]);
+
+  useEffect(()=>{
+    dispatch(AuthDetail())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   useEffect(() =>{
  try{
@@ -49,8 +57,8 @@ function Reviews({ product }) {
       .catch((error) => {
         console.log({ error: error });
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+  }, [product._id,reviews]);
 
   const reviewFunction = (data) => {
     setReviews({ ...reviews, reviewText: data.review, rating: data.rating });
@@ -64,6 +72,7 @@ function Reviews({ product }) {
       reviews.rating &&
       reviews.reviewText
     ) {
+      console.log(reviews)
       axios
         .post("https://mern-zvtq.onrender.com/reviews/product/add", reviews)
         .then((result) => {
@@ -73,7 +82,8 @@ function Reviews({ product }) {
           console.log({ error: error });
         });
     }
-  }, [reviews, toast]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reviews]);
 
   // showa all reviews
   const showBrand = () => {

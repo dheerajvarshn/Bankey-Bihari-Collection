@@ -7,7 +7,7 @@ const OrderSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref:'Cart'
   },
-  user: {
+  userId: {
     type:Schema.Types.ObjectId,
     ref:'User'
   },
@@ -22,5 +22,5 @@ const OrderSchema = new Schema({
   }
 });
 
-const OrderModel= Mongoose.model('Contact', OrderSchema);
+const OrderModel= Mongoose.model('Orders', OrderSchema);
 module.exports =OrderModel

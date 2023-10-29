@@ -10,6 +10,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteAuth } from "../Action/Auth";
 import { clearCart } from "../Action";
+// import { useNavigate } from "react-router-dom";
+
 
 function Profile() {
   const dispatch = useDispatch();
@@ -40,7 +42,9 @@ function Profile() {
           {auth.userName.slice(0, 1)}
         </MenuButton>
         <MenuList>
-          <MenuItem>Orders</MenuItem>
+          <MenuItem
+          //  onClick={()=>navigate('/user/order')}
+          >Orders</MenuItem>
           <MenuDivider />
 
           <MenuItem onClick={logout}>Log Out</MenuItem>

@@ -31,6 +31,7 @@ paymentRoute.post("/verify", (req, res) => {
     req.body.response.razorpay_order_id +
     "|" +
     req.body.response.razorpay_payment_id;
+    console.log(body)
 
   var expectedSignature = crypto
     .createHmac("sha256", key_secret)

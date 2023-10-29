@@ -1,11 +1,11 @@
 import {
   Box,
-  Grid,
   GridItem,
   Heading,
   Image,
   Icon,
-  Skeleton
+  Skeleton,
+  SimpleGrid
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
@@ -51,26 +51,19 @@ const Category = () => {
     <Box>
       <Navbar />
       <SearchResult/>
-      <Heading
+      <Box
         fontSize={30}
-        // bg="gainsboro"
-        width="30%"
+        bg="gainsboro"
         fontStyle="italic"
-        ml={12}
-        pl={5}
+        ml={5}
+        pl={2}
       >
         {category.toUpperCase()} FASHION
-      </Heading>
+      </Box>
       {products && (
         <>
-          <Grid
-            templateColumns="repeat(4, 1fr)"
-            gap={2}
-            mx="30px"
-            padding={5}
-            justifyContent="center"
-            gridRowGap="20px"
-          >
+
+          <SimpleGrid spacing={'5px'} minChildWidth='200px' p={2} ml={5} >
             {products.slice(page * 8 - 8, page * 8).map((product, index) => (
               <Skeleton height="100%" isLoaded={isLoaded}>
                 <Link to={`/product/category/subcategory/${product._id}`}>
@@ -113,7 +106,8 @@ const Category = () => {
                 </Link>
               </Skeleton>
             ))}
-          </Grid>
+          {/* </Grid> */}
+          </SimpleGrid>
           <Box>
             <Pagination products={products} productPerPage={productPerPage} />
           </Box>

@@ -18,6 +18,7 @@ import ChangePassword from "../components/forgetPassword/ChangePassword";
 import SearchProductPage from "../components/SearchBox/searchProductPage"
 import Error from "../components/Error";
 import { Box } from "@chakra-ui/react";
+import Order from "../components/Order";
 const Routers = () => {
   return (
     <Box>
@@ -47,6 +48,7 @@ const Routers = () => {
         <Route path="/user/address/add" exact element={<DeliveryAddress />} />
         <Route path="/user/address/update/:id" exact  element={<DeliveryAddress />} />
         <Route path="/user/order_summary" exact  element={<OrderSummary />} />
+        <Route path="/user/order" exact  element={<Order />} />
 
         {/* Payment page */}
         <Route path="/user/payment_method" exact element={<Payment />}/>

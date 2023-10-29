@@ -8,6 +8,7 @@ import {
   MenuList,
   MenuItem
 } from "@chakra-ui/react";
+// import {FaBars} from 'react-icons/fa'
 import { ChevronDownIcon} from "@chakra-ui/icons";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -76,16 +77,17 @@ function Navbar() {
   
   return (
     <Flex
-      minWidth="max-content"
       pl="5%"
       pr="5%"
-      alignItems="center"
       gap="2"
       mb={"10px"}
       justifyContent={"space-between"}
+
+      
       
     >
       <Searchbox />
+      <Flex> 
       <Box p="2">
         <Spacer />
         <Menu>
@@ -159,6 +161,10 @@ function Navbar() {
           </MenuList>
         </Menu>
       </Box>
+      </Flex>
+      {/* <Box >
+      <FaBars />
+      </Box> */}
     </Flex>
   );
 }

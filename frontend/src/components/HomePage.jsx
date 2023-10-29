@@ -24,13 +24,7 @@ const HomePage = () => {
       <Heading my={3} p={5}  color="#3a2626" bg={'green.100'} fontFamily='serif'>
         Bankey Bihari Fashion
       </Heading>
-
-    {/* user has login and product in cart */}
-     
-
-      {/* <Category /> */}
       <Box 
-      // bg='gray.50'
       >
 
       <Product category={"men"}/>

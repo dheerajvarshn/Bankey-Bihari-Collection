@@ -7,6 +7,7 @@ import {
   Image,
   Radio,
   RadioGroup,
+  SimpleGrid,
   Stack,
   Text,
   useColorModeValue,
@@ -93,29 +94,33 @@ const ProductDetail = () => {
       <SearchResult />
       {data && (
         <Box
-          display={"flex"}
+          display={{md:'flex'}}
           justifyContent="space-between"
           bg={bg}
           p={5}
           gap={5}
         >
           <Box>
-            <Box marginLeft={10} height={"50rem"} w={"30rem"}>
+            <Box marginLeft={10} height={["30rem",null,"50rem"]} w={['20rem',null,'30rem']}  mb={5}>
               <Box>
                 <Image
+
                   src={data.image}
                   border={"1px"}
                   borderColor={"gray.200"}
-                  width={"50em"}
+                  width={["20em","30em","40em","50em"]}
                 />
               </Box>
 
-              <Box
+              <SimpleGrid
                 textAlign="center"
-                display={"flex"}
-                justifyContent="center"
+                columns={[1,2]}
+                spacing={'40px'}
+                p={5}
+              
+                
                 mt="20px"
-                gap="20px"
+                gap="10px"
               >
                 <Button
                   colorScheme="orange"
@@ -140,7 +145,7 @@ const ProductDetail = () => {
                 >
                   <AiOutlineThunderbolt /> Buy Now
                 </Button>
-              </Box>
+              </SimpleGrid>
             </Box>
           </Box>
           <Box border={"1px"} borderColor={"gray.200"}>

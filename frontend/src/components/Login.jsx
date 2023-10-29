@@ -41,6 +41,10 @@ const Login = () => {
   const dispatch=useDispatch()
   
   const bg=useColorModeValue('whiteAlpha.700','#1a202c')
+  useEffect(()=>{
+    dispatch(AuthDetail())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
   
   
   const loginData = (data) => {

@@ -31,7 +31,7 @@ export let handlePayment = (total,naviagte,dispatch) => {
 export let  handleOpenRazorpay = (data,naviagte,dispatch) => {
   
     let option = {
-      key: process.env.RAZORPAY_KEY,
+      key:'rzp_test_67c3VOXCJvMgTo',
       amount: Number(data.amount),
       currrency: data.currrency,
       name: "Bankey Bihari Collection",
@@ -45,11 +45,11 @@ export let  handleOpenRazorpay = (data,naviagte,dispatch) => {
       },
       image: logo,
       handler: function (response) {
-        console.log(response, "42");
         axios.post('https://mern-zvtq.onrender.com/payment/verify',{response:response}).then((res)=>{
           console.log(res.data)
           dispatch(clearCart())
-          naviagte('/')          
+          naviagte('/')
+          // naviagte('/user/order')          
         }).catch((err)=>{
           console.log(err)
         })

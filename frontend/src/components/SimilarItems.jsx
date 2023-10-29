@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, Heading, Icon, Image, Skeleton } from '@chakra-ui/react'
+import { Box, GridItem, Heading, Icon, Image, SimpleGrid, Skeleton } from '@chakra-ui/react'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import ResultNotFound from './resultNotFound';
@@ -44,7 +44,7 @@ function SimilarItems({product}) {
         You might be interested in
       </Box>
       <Box>
-      <Grid
+      {/* <Grid
             templateColumns="repeat(4, 1fr)"
             gap={2}
             mx="30px"
@@ -52,7 +52,8 @@ function SimilarItems({product}) {
             textAlign="center"
             gridRowGap="20px"
             // bg="gray.50"
-          >
+          > */}
+          <SimpleGrid spacing={'10px'} minChildWidth='150px' p={2} ml={5} >
             {similarProducts.slice(page * 4 - 4, page * 4).map((product) => (
               <Skeleton height="100%" isLoaded={isLoaded}>
                 <Link to={`/product/category/subcategory/${product._id}`}>
@@ -95,7 +96,8 @@ function SimilarItems({product}) {
                 </Link>
               </Skeleton>
             ))}
-          </Grid>
+          {/* </Grid> */}
+          </SimpleGrid>
           <Pagination products={similarProducts} productPerPage={productPerPage} />
       </Box>
        </> : <ResultNotFound />

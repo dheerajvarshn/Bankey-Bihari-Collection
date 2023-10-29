@@ -6,6 +6,7 @@ import {
   Skeleton,
   Button,
   HStack,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
@@ -51,10 +52,11 @@ const Product = ({ category }) => {
         <Link to={`/product/category/${category}`}><Button>View more{AiOutlineArrowRight}</Button></Link>
       </Box>
       </HStack>
-      <Box display='grid' gridAutoRows='auto' gridTemplateColumns='repeat(4,1fr)'  mx="30px" gap='2' gridRow={3}     
+      {/* <Box display='grid' gridAutoRows='auto' gridTemplateColumns='repeat(4,1fr)'  mx="30px" gap='2' gridRow={3}     
         padding={2}
         textAlign="center"
-      >
+      > */}
+      <SimpleGrid spacing={'5px'} minChildWidth='200px' p={2} m={2} >
         {products &&
           products.map((product, index) => (
             <Skeleton height="100%" isLoaded={isLoaded} key={index}>
@@ -92,7 +94,8 @@ const Product = ({ category }) => {
             </Skeleton>
           ))
           }
-      </Box>
+      </SimpleGrid>
+      {/* </Box> */}
     </Box>
   );
 };
