@@ -6,7 +6,7 @@ import slidesImages from "./Images";
 const Slides = () => {
   return (
       
-    <Box position={'relative'} >
+    <Box position={'relative'} zIndex={-1} >
       <Carousel
         autoPlay={true}
         showArrows={true}

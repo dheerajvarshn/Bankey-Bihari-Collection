@@ -122,7 +122,7 @@ const Login = () => {
     axios.post('https://mern-zvtq.onrender.com/auth/googlelogin',{"tokenId":response.tokenObj.id_token}).then(result=>{
       console.log(result.data)
       localStorage.setItem("Token", JSON.stringify(result.data.token));
-      // dispatch(AuthDetail(result.data.user))
+      dispatch(AuthDetail()) 
       setData(init)
       toast({description:"login successfull",position:'top',status:'success',duration:'3000'});
       navigate(-1)

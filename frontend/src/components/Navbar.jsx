@@ -6,14 +6,17 @@ import {
   MenuButton,
   Menu,
   MenuList,
-  MenuItem
+  MenuItem,
+  useDisclosure,
+  IconButton
 } from "@chakra-ui/react";
 // import {FaBars} from 'react-icons/fa'
 import { ChevronDownIcon} from "@chakra-ui/icons";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 import Searchbox from "./SearchBox/searchbox";
+import { HamburgerIcon } from '@chakra-ui/icons';
 
 const menCategory = [
   {
@@ -74,20 +77,41 @@ const womenCategory = [
 ];
 
 function Navbar() {
+  const {isOpen,onOpen,onClose} = useDisclosure()
   
   return (
+    
     <Flex
       pl="5%"
       pr="5%"
       gap="2"
       mb={"10px"}
       justifyContent={"space-between"}
-
-      
-      
+    
+      border={'1px'}
+      borderColor={'gray.200'}
+      m={2}
     >
+
       <Searchbox />
-      <Flex> 
+      <Box  onMouseLeave={onClose}
+        onMouseEnter={onOpen} >
+        <Box display={'flex'} justifyContent={'flex-end'}>
+      <IconButton
+        aria-label="Menu"
+        icon={<HamburgerIcon />}
+        mt={2}
+        mr={1}
+        display={{ base: 'block', md: 'none'}}
+       
+        onClick={isOpen ? onClose : onOpen}
+      />
+      </Box>
+      <Box display={{ base: isOpen ? 'block' : 'none', md: 'flex' }}
+      mt={isOpen && '2'}
+
+      > 
+      
       <Box p="2">
         <Spacer />
         <Menu>
@@ -161,10 +185,9 @@ function Navbar() {
           </MenuList>
         </Menu>
       </Box>
-      </Flex>
-      {/* <Box >
-      <FaBars />
-      </Box> */}
+      </Box>
+      </Box>
+   
     </Flex>
   );
 }

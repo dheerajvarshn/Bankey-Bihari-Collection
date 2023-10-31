@@ -9,6 +9,7 @@ import {
   Spacer,
   Text,
   useColorMode,
+
   useToast,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
@@ -87,7 +88,8 @@ const Header = () => {
         Bankey Bihari Collection
       </Text>
       <Spacer />
-      <Box>
+
+      <Box display={{ base:'none', lg: 'block'}}>
         <Button onClick={toggleColorMode}>
           {colorMode === "light" ? <MdLightMode /> : <HiOutlineMoon />}
         </Button>
@@ -95,6 +97,7 @@ const Header = () => {
       <Box display="flex">
         {Token ? (
           <Button
+          display={{ base:'none', md: 'block'}}
             colorScheme="teal"
             mr={4}
             h="30px"
@@ -106,7 +109,8 @@ const Header = () => {
           </Button>
         ) : (
           <Link to="/login">
-            <Button
+            <Button 
+            display={{ base:'none', md: 'block'}}
               colorScheme="teal"
               mr={4}
               h="30px"
@@ -130,9 +134,6 @@ const Header = () => {
             >
               {getData.length}
             </Badge>
-            <Box fontSize="15px" mt={2}>
-              Cart
-            </Box>
           </Box>
         </Link>
         {Object.keys(auth).length!==0 ? (

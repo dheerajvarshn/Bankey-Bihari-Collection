@@ -4,16 +4,19 @@ import {
   MenuButton,
   MenuDivider,
   MenuItem,
-  MenuList
+  MenuList,
+  useColorMode,
 } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteAuth } from "../Action/Auth";
 import { clearCart } from "../Action";
+import { HiOutlineMoon } from "react-icons/hi";
+import { MdLightMode } from "react-icons/md";
 // import { useNavigate } from "react-router-dom";
 
-
 function Profile() {
+  const { colorMode, toggleColorMode } = useColorMode();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.authReducer.Auth);
 
@@ -44,7 +47,17 @@ function Profile() {
         <MenuList>
           <MenuItem
           //  onClick={()=>navigate('/user/order')}
-          >Orders</MenuItem>
+          >
+            Orders
+          </MenuItem>
+          <MenuDivider />
+
+          <MenuItem
+            display={{ base: "block", lg: "none" }}
+            onClick={toggleColorMode}
+          >
+            {colorMode === "light" ? <MdLightMode /> : <HiOutlineMoon />}
+          </MenuItem>
           <MenuDivider />
 
           <MenuItem onClick={logout}>Log Out</MenuItem>
