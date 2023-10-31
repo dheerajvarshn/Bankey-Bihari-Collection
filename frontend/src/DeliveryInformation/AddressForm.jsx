@@ -1,9 +1,9 @@
 import {
   Box,
   Button,
-  Grid,
   GridItem,
   Heading,
+  SimpleGrid,
   Spacer,
   Text,
   useColorModeValue,
@@ -62,13 +62,13 @@ const AddressForm = () => {
   }
 
   return (
-    <Box display='flex' bg={bg} p={5} gap={10} justifyContent='center'>
+    <Box display='flex' bg={bg} p={5} gap={10} justifyContent={{lg:'center'}}>
       {addressdoc.length ? (
-        <Box h="auto" w="60%"   boxShadow={"xl"} p={5}>
+        <Box h="auto"    boxShadow={"xl"} p={5}>
           <Heading fontSize={20} bg="cyan.200" h="10" p={2}>
             DELIVERY ADDRESS
           </Heading>
-          <Grid templateColumns="repeat(2, 1fr)" gap={3} m="3" w="auto" >
+          <SimpleGrid columns={[1,2]} gap={3} m="3" w="auto" >
             {addressdoc.map((item) => (
 
               <GridItem key={item._id} cursor='pointer' >
@@ -118,7 +118,7 @@ const AddressForm = () => {
                 </Box>
               </GridItem>
             ))}
-          </Grid>
+          </SimpleGrid>
           <Link to='/user/address/add'>
             <Box textAlign={'center'} >
 

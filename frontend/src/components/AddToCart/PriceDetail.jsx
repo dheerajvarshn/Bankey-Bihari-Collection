@@ -40,7 +40,7 @@ const PriceDetail = () => {
             <Heading fontSize="20px" mt={5}>
               PRICE DETAILS
             </Heading>
-            <Divider w="400px" />
+            <Divider w={["200px","400px"]} />
 
             <HStack spacing={150}>
               <Text>Price({cartProduct.length} item)</Text>

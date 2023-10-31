@@ -7,6 +7,7 @@ import {
   Heading,
   HStack,
   Input,
+  SimpleGrid,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -186,10 +187,10 @@ const DeliveryAddress = () => {
   };
 
   return (
-    <Box display="flex" bg={bg} p={5} gap={10}>
+    <SimpleGrid columns={[1,2]} bg={bg} p={5}  spacing={'20px'}>
       <Box
         h="auto"
-        w="50%"
+        
         ml={5}
         border="1px"
         // bg="white"
@@ -322,7 +323,7 @@ const DeliveryAddress = () => {
                   )}
                 </FormControl>
               </HStack>
-              <Button type="submit" colorScheme={"red"} form="my-form" w="40%">
+              <Button type="submit" colorScheme={"red"} form="my-form" >
                 {loading ? (
                   <CircularProgress
                     isIndeterminate
@@ -337,10 +338,10 @@ const DeliveryAddress = () => {
           </Box>
         </Box>
       </Box>
-      <Box>
+      <Box ml={{base:'5'}}>
         <PriceDetail />
       </Box>
-    </Box>
+    </SimpleGrid>
   );
 };
 

@@ -94,14 +94,14 @@ const ProductDetail = () => {
       <SearchResult />
       {data && (
         <Box
-          display={{md:'flex'}}
+          display={{lg:'flex'}}
           justifyContent="space-between"
           bg={bg}
           p={5}
           gap={5}
         >
           <Box>
-            <Box marginLeft={10} height={["30rem",null,"50rem"]} w={['20rem',null,'30rem']}  mb={5}>
+            <Box marginLeft={10} height={["35rem",null,"50rem"]} w={['20rem',null,'30rem']}  mb={5}>
               <Box>
                 <Image
 
@@ -117,10 +117,9 @@ const ProductDetail = () => {
                 columns={[1,2]}
                 spacing={'40px'}
                 p={5}
-              
-                
                 mt="20px"
                 gap="10px"
+                position={'relative'}
               >
                 <Button
                   colorScheme="orange"
@@ -148,7 +147,10 @@ const ProductDetail = () => {
               </SimpleGrid>
             </Box>
           </Box>
-          <Box border={"1px"} borderColor={"gray.200"}>
+          <Box border={"1px"} 
+          
+          borderColor={"gray.200"}
+          >
             <Box bg={"white"} p={5}>
               <Heading>{data.brand}</Heading>
               <Box color={"gray.400"}>{data.slug}</Box>

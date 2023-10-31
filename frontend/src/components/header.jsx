@@ -28,11 +28,8 @@ const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const token = JSON.parse(localStorage.getItem("Token"));
   const auth = useSelector((state) => state.authReducer.Auth);
-  console.log(auth)
 
-  
-
-  const getData = useSelector((state) => state.cartReducer);
+  const getData = useSelector((state) => state.cartReducer.cart);
   const dispatch = useDispatch();
   const [Token, setToken] = useState(false);
   const toast = useToast();
@@ -127,8 +124,8 @@ const Header = () => {
             <AiOutlineShoppingCart />
             <Badge
               ml="6"
-              bgColor={"white"}
-              color="green.500"
+              bgColor={"red.200"}
+              color="white.200"
               pos="absolute"
               borderRadius={5}
             >

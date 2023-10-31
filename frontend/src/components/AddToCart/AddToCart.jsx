@@ -1,4 +1,4 @@
-import { Box, Button, Heading, HStack, Image, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Button, Heading, HStack, Image, Text, useColorModeValue,SimpleGrid } from "@chakra-ui/react";
 import Navbar from "../Navbar";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,7 +8,7 @@ import PriceDetail from "./PriceDetail";
 import { Delete, Add, Decreament } from "../../Action/index";
 import { ArrowLeftIcon } from "@chakra-ui/icons";
 import emptyCart from '../../images/emptycart.png'
-import { useEffect } from "react";
+import { useEffect } from "react";  
 import axios from "axios";
 import Footer from "../Footer";
 import SearchResult from "../SearchBox/searchresult";
@@ -75,13 +75,19 @@ const AddToCart = () => {
       <Navbar />
        < SearchResult/> 
       {cartProduct.length ? (
-        <Box display={"flex"} >
-          <Box>
+        <SimpleGrid spacing='20px'  columns={[1,2]}  p={5}
+        mt="20px"
+        gap="10px">
+
             {cartProduct.map((item) => (
-              <Box padding={5} display="flex" gap={5} key={item._id}>
-                <Box boxShadow="xl" h="300px" pt={3} w='90%'>
-                  <Box m={5} display="flex" gap={5}>
+              <SimpleGrid padding={5}  gap={5} key={item._id} boxShadow="xl" >
+              
+                  <SimpleGrid m={5} 
+                  columns={[1,null,2]}
+                    
+                   gap={5} pl={3}>
                     <Image
+                    
                       src={item.image}
                       alt="Dan Abramov"
                       boxSize="200px"
@@ -123,7 +129,7 @@ const AddToCart = () => {
 
                       <Text color="green.500"> | Free</Text>
                     </Box>
-                  </Box>
+                  </SimpleGrid>
                   <Box display="flex" gap={10}>
                     <HStack pl={5}>
                       <Button
@@ -165,13 +171,15 @@ const AddToCart = () => {
                       mr="30px"
                     ></Box>
                   </Link>
-                </Box>
-              </Box>
+            
+              </SimpleGrid>
             ))}
-          </Box>
+          
           <Box>
             {<PriceDetail />}
-            <Box display="flex" justifyContent="center" mt={5}>
+            <SimpleGrid 
+            spacing={'20px'}
+            justifyContent="center" mt={5}>
             <Button
               bgGradient="linear(to-r, teal.500, green.500)"
               _hover={{ bgGradient: "linear(to-r, red.500, yellow.500)" }}
@@ -179,9 +187,9 @@ const AddToCart = () => {
             >
               PLACE ORDER
             </Button>
+          </SimpleGrid>
           </Box>
-            </Box>
-        </Box>
+        </SimpleGrid>
       ) : (
         <Box textAlign={'center'} h='auto'>
           <Heading>Cart is Empty</Heading>
